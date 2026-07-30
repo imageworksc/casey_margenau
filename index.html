@@ -185,6 +185,7 @@ h2.on-dark { color: var(--white); }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-l, .reveal-r { opacity: 1; transform: none; transition: none; }
+  .faq-list .faq-item, .faq-ans { opacity: 1; transform: none; transition: none; }
   .img-reveal::after { display: none; }
   .img-zoom { transform: none; }
   .hero-glow, .btn::after { animation: none; }
@@ -467,15 +468,25 @@ nav.solid .logo-img { height: 44px; }
 .faq-light { max-width: 840px; margin: 0 auto; }
 .faq-light h2 { margin: 20px 0 12px; }
 .faq-intro { font-size: var(--text-md); line-height: var(--lh-md); font-weight: 400; color: var(--text2); margin-bottom: 48px; }
-.faq-list { list-style: none; }
+.faq-list {
+  list-style: none; background: var(--white);
+  border: 1px solid var(--line); box-shadow: 0 24px 60px -34px rgba(9,23,52,0.30);
+  padding: 4px clamp(24px,3vw,44px);
+}
+.faq-list .faq-item { opacity: 0; transform: translateY(16px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
+.faq-list.in .faq-item { opacity: 1; transform: none; }
+.faq-list.in .faq-item:nth-child(1) { transition-delay: .12s; }
+.faq-list.in .faq-item:nth-child(2) { transition-delay: .22s; }
+.faq-list.in .faq-item:nth-child(3) { transition-delay: .32s; }
 .faq-item { border-bottom: 1px solid var(--line); }
+.faq-item:last-child { border-bottom: none; }
 .faq-btn {
   width: 100%; background: none; border: none; padding: 26px 0; text-align: left;
   font-family: var(--f); font-size: clamp(16px,1.5vw,19px); font-weight: 400; color: var(--navy);
   cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
-  line-height: 1.4; transition: color .25s var(--ease);
+  line-height: 1.4; transition: color .25s var(--ease), padding-left .3s var(--ease);
 }
-.faq-btn:hover { color: var(--cr); }
+.faq-btn:hover { color: var(--cr); padding-left: 6px; }
 .faq-ico { flex-shrink: 0; width: 24px; height: 24px; position: relative; }
 .faq-ico::before, .faq-ico::after {
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -487,7 +498,8 @@ nav.solid .logo-img { height: 44px; }
 .faq-item.open .faq-ico::before { background: var(--cr); }
 .faq-ans-wrap { overflow: hidden; max-height: 0; transition: max-height .45s var(--ease); }
 .faq-item.open .faq-ans-wrap { max-height: 340px; }
-.faq-ans { font-size: var(--text-md); line-height: var(--lh-md); font-weight: 400; color: var(--text2); padding-bottom: 28px; max-width: 680px; }
+.faq-ans { font-size: var(--text-md); line-height: var(--lh-md); font-weight: 400; color: var(--text2); padding-bottom: 28px; max-width: 680px; opacity: 0; transform: translateY(-6px); transition: opacity .4s var(--ease) .06s, transform .4s var(--ease) .06s; }
+.faq-item.open .faq-ans { opacity: 1; transform: none; }
 
 /* ══════════ BLOG ══════════ */
 .blog-single { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px,6vw,72px); align-items: center; margin-top: 40px; }
@@ -763,13 +775,13 @@ footer { background: #071019; padding: clamp(64px,8vw,96px) var(--pad) 40px; bor
 </section>
 
 <!-- FAQ -->
-<section class="section">
+<section class="section cream">
   <div class="w">
-    <div class="faq-light reveal">
-      <div class="kicker">Quick Answers</div>
-      <h2>Choosing the <strong>right luxury real estate agent</strong></h2>
-      <p class="faq-intro">Common questions from buyers and sellers across Northern Virginia.</p>
-      <ul class="faq-list">
+    <div class="faq-light">
+      <div class="kicker reveal">Quick Answers</div>
+      <h2 class="reveal d1">Choosing the <strong>right luxury real estate agent</strong></h2>
+      <p class="faq-intro reveal d1">Common questions from buyers and sellers across Northern Virginia.</p>
+      <ul class="faq-list reveal d1">
         <li class="faq-item">
           <button class="faq-btn">How do I choose the right luxury real estate agent in Northern Virginia?<span class="faq-ico"></span></button>
           <div class="faq-ans-wrap"><div class="faq-ans">Look for proven local sales, high-end listing experience, strong negotiation skills, and a marketing process built specifically for luxury homes. The right agent should understand pricing, presentation, buyer behavior, and the specific community where your home is located.</div></div>
@@ -788,7 +800,7 @@ footer { background: #071019; padding: clamp(64px,8vw,96px) var(--pad) 40px; bor
 </section>
 
 <!-- BLOG -->
-<section class="section cream">
+<section class="section">
   <div class="w">
     <div class="kicker reveal">Latest Insight</div>
     <div class="blog-single">
