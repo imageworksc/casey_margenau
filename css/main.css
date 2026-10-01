@@ -753,37 +753,9 @@ main { overflow-x: clip; }
   .btn { white-space: normal; text-align: center; height: auto; min-height: 3.5rem; padding-block: 0.875rem; line-height: 1.3; }
 }
 
-/* ══════════ HERO — large screens (≥2200px): two-column composition ══════════
-   Headline / copy / CTAs stay left; the proof stats become a glass card on the
-   right, so the wide viewport is used instead of leaving empty photo. */
-@media (min-width: 2200px) {
-  .hero-l-in {
-    max-width: none; display: grid;
-    grid-template-columns: minmax(0, 46rem) minmax(0, 1fr);
-    column-gap: 4rem; align-items: start;
-  }
-  .hero-l-in > h1 { grid-column: 1; }
-  .hero-l-in > .hero-sub { grid-column: 1; }
-  .hero-l-in > .hero-ctas { grid-column: 1; }
-  .hero-l-in > .proof-strip {
-    grid-column: 2; grid-row: 1 / span 3; align-self: end; justify-self: end;
-    flex-direction: column; flex-wrap: nowrap; width: 100%; max-width: 21rem; margin: 0;
-    padding: 0.5rem 2rem; border: 0.0625rem solid rgba(255,255,255,0.16); border-top: 0.125rem solid var(--cr);
-    background: rgba(6,17,32,0.42); backdrop-filter: blur(0.75rem) saturate(1.2);
-    box-shadow: var(--shadow-lg);
-  }
-  .proof-item { flex: none; min-width: 0; padding: 1.5rem 0; border-bottom: 0.0625rem solid rgba(255,255,255,0.1); }
-  .proof-item:last-child { border-bottom: 0; }
-  .proof-val { font-size: 2.75rem; }
-
-  /* a touch larger type so the left column holds its own at 4K / 5K */
-  .hero-l-in { grid-template-columns: minmax(0, 50rem) minmax(0, 1fr); }
-  .hero h1 { font-size: 5.25rem; }
-  .hero-sub { font-size: 1.375rem; line-height: 2.125rem; max-width: 40rem; margin-bottom: 3rem; }
-  .hero-ctas .btn { height: 3.75rem; padding: 0 2.25rem; }
-
-  /* let the photo breathe on the right; keep the left scrim for legibility */
-  .hero-bg::before {
-    background: radial-gradient(120% 90% at 78% 12%, rgba(27,51,88,0.16) 0%, rgba(9,23,52,0.46) 55%, rgba(6,17,32,0.74) 100%);
-  }
+/* ══════════ HERO — 4K / 5K: same layout, content scaled up to fill the screen ══════════
+   Only 16:9 / 16:10 / 4:3 screens: the factor is sized so headline → CTAs still fit
+   within one viewport height (ultrawide is handled by the height-capped root size). */
+@media (min-width: 2200px) and (max-aspect-ratio: 2/1) {
+  .hero-l-in { zoom: 1.18; }
 }
