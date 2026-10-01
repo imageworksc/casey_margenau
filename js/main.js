@@ -14,14 +14,23 @@ const onScroll = () => nav.classList.toggle('solid', window.scrollY > 60);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 
-// FAQ accordion
-document.querySelectorAll('.faq-btn').forEach(btn => {
+// FAQ accordion (one open at a time, state exposed to assistive tech)
+const faqItems = [...document.querySelectorAll('.faq-item')];
+const setFaq = (item, open) => {
+  item.classList.toggle('open', open);
+  item.querySelector('.faq-btn').setAttribute('aria-expanded', String(open));
+};
+faqItems.forEach((item, n) => {
+  const btn = item.querySelector('.faq-btn');
+  const panel = item.querySelector('.faq-ans-wrap');
+  panel.id = panel.id || 'faq-panel-' + n;
+  panel.setAttribute('role', 'region');
+  btn.setAttribute('aria-controls', panel.id);
+  btn.setAttribute('aria-expanded', 'false');
   btn.addEventListener('click', () => {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-    document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', String(b.closest('.faq-item').classList.contains('open'))));
+    const willOpen = !item.classList.contains('open');
+    faqItems.forEach(i => setFaq(i, false));
+    setFaq(item, willOpen);
   });
 });
 
@@ -76,8 +85,8 @@ if (pxEls.length && !reduce) {
   apply();
 }
 
-// Testimonials carousel (auto-rotate, pause on hover)
-(function(){
+// Testimonials carousel: auto-rotate; pauses on hover, focus and hidden tabs; swipe + arrow keys
+(function () {
   const c = document.querySelector('[data-testi]'); if (!c) return;
   const track = c.querySelector('.testi-track');
   const slides = [...c.querySelectorAll('.testi-slide')];
@@ -87,12 +96,50 @@ if (pxEls.length && !reduce) {
   const go = n => {
     i = (n + slides.length) % slides.length;
     track.style.setProperty('--slide', i);
-    dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
+    slides.forEach((s, k) => s.setAttribute('aria-hidden', String(k !== i)));
+    dots.forEach((d, k) => {
+      d.classList.toggle('is-active', k === i);
+      d.setAttribute('aria-current', String(k === i));
+    });
   };
   const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
   const start = () => { stop(); if (!reduce) timer = setInterval(() => go(i + 1), 6000); };
   dots.forEach((d, k) => d.addEventListener('click', () => { go(k); start(); }));
   c.addEventListener('mouseenter', stop);
   c.addEventListener('mouseleave', start);
+  c.addEventListener('focusin', stop);
+  c.addEventListener('focusout', start);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+  c.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  let x0 = null;
+  c.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') x0 = e.clientX; });
+  c.addEventListener('pointerup', e => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); start(); }
+  });
+  go(0);
   start();
 })();
+
+// Magnetic buttons: a small pull toward the pointer (fine pointers only, skipped for reduced motion)
+if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('pointermove', e => {
+      const r = btn.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      btn.style.setProperty('--mx', (dx * 8).toFixed(1) + 'px');
+      btn.style.setProperty('--my', (dy * 6).toFixed(1) + 'px');
+    });
+    btn.addEventListener('pointerleave', () => {
+      btn.style.removeProperty('--mx');
+      btn.style.removeProperty('--my');
+    });
+  });
+}
