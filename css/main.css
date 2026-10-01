@@ -57,8 +57,9 @@
 }
 
 /* fluid root size: 16px up to 1920px wide, then scales with the viewport
-   (≈32px at 3840 / 4K, ≈43px at 5120 / 5K) so every rem-based size follows */
-html { scroll-behavior: smooth; font-size: max(100%, 0.8334vw); -webkit-text-size-adjust: 100%; }
+   (≈32px at 3840x2160 / 4K, ≈43px at 5120x2880 / 5K) so every rem-based size follows;
+   capped by viewport height (1.5vh) so ultrawide screens don't blow the hero past the fold */
+html { scroll-behavior: smooth; font-size: max(100%, min(0.8334vw, 1.5vh)); -webkit-text-size-adjust: 100%; }
 [hidden] { display: none !important; }
 body {
   font-family: var(--f);
@@ -267,12 +268,12 @@ nav.solid .logo-img { height: 2.8125rem; }
 /* ══════════ HERO ══════════ */
 .hero {
   position: relative; min-height: 100vh; min-height: 100svh;
-  display: grid; grid-template-columns: 1fr; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1fr); align-items: center;
   padding: 8.25rem var(--pad) 5.5rem;
   overflow: hidden;
 }
 .hero-bg {
-  position: absolute; inset: -22% 0; z-index: 0; will-change: transform;
+  position: absolute; inset: -16% 0 0; z-index: 0; will-change: transform;
   transform: translate3d(0, var(--parallax-y, 0px), 0);
   background-size: cover; background-position: center;
 }
@@ -555,7 +556,7 @@ footer { background: #071019; padding: clamp(4rem,8vw,6rem) var(--pad) 2.5rem; b
 
 /* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 1024px) {
-  .prop-split, .auth-grid, .blog-single { grid-template-columns: 1fr; }
+  .prop-split, .auth-grid, .blog-single { grid-template-columns: minmax(0, 1fr); }
   .prop-frame { max-width: 28.75rem; }
   .proc-steps { grid-template-columns: 1fr 1fr; }
   .foot-g { grid-template-columns: 1fr 1fr; }
@@ -563,7 +564,7 @@ footer { background: #071019; padding: clamp(4rem,8vw,6rem) var(--pad) 2.5rem; b
   nav.solid .nw { height: 4.5rem; }
 }
 @media (max-width: 820px) {
-  .intent-in { grid-template-columns: 1fr; }
+  .intent-in { grid-template-columns: minmax(0, 1fr); }
   .hero { min-height: auto; padding-top: 7.5rem; }
 }
 @media (max-width: 560px) {
@@ -577,9 +578,9 @@ footer { background: #071019; padding: clamp(4rem,8vw,6rem) var(--pad) 2.5rem; b
   .proof-val { font-size: 1.75rem; }
   .testi-q { font-size: 1.375rem; }
   body { font-size: 1rem; }
-  .proc-steps { grid-template-columns: 1fr; }
+  .proc-steps { grid-template-columns: minmax(0, 1fr); }
   .auth-stats { grid-template-columns: 1fr 1fr; }
-  .foot-g { grid-template-columns: 1fr; }
+  .foot-g { grid-template-columns: minmax(0, 1fr); }
   .proof-item { min-width: 45%; }
   .btn { width: 100%; }
   .hero-ctas, .prop-ctas, .cta-btns { width: 100%; }
@@ -722,4 +723,32 @@ nav { animation: fadeIn 1s var(--ease-out) .6s both; }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-r, nav.menu-open .nav-r, .nav-links li, .nav-btn, .nav-toggle span { transition: none; }
+}
+
+/* ══════════ RESPONSIVE HARDENING ══════════ */
+
+/* reveal transforms (±42px) must never create horizontal scroll */
+main { overflow-x: clip; }
+
+/* short desktop / landscape-tablet viewports: keep the hero CTAs above the fold */
+@media (min-width: 821px) and (max-height: 820px) {
+  .hero { padding-top: 7rem; padding-bottom: 3.5rem; }
+  .hero h1 { font-size: clamp(2.75rem, 8vh, 4rem); margin: 1rem 0 1rem; }
+  .hero-sub { margin-bottom: 1.5rem; }
+  .proof-strip { margin-bottom: 1.5rem; }
+  .proof-item { padding-block: 1rem; }
+}
+
+/* touch targets ≥ 44px on tablet & mobile (hit area grows, visuals stay) */
+@media (max-width: 1024px) {
+  .logo { min-height: 2.75rem; }
+  .tlink { position: relative; }
+  .tlink::before { content: ''; position: absolute; inset: -0.75rem -0.5rem; }
+  .foot-ul { gap: 0; }
+  .foot-ul a, .foot-cnt a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+}
+
+/* long button labels wrap instead of forcing the layout wider */
+@media (max-width: 560px) {
+  .btn { white-space: normal; text-align: center; height: auto; min-height: 3.5rem; padding-block: 0.875rem; line-height: 1.3; }
 }
