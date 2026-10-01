@@ -14,6 +14,34 @@ const onScroll = () => nav.classList.toggle('solid', window.scrollY > 60);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 
+// Mobile / tablet menu (hamburger)
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+if (navToggle && navMenu) {
+  const desktop = window.matchMedia('(min-width: 1025px)');
+  const inertTargets = document.querySelectorAll('main, footer, .skip-link');
+  const setMenu = open => {
+    nav.classList.toggle('menu-open', open);
+    document.body.classList.toggle('menu-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    inertTargets.forEach(el => { el.inert = open; });
+  };
+  navToggle.addEventListener('click', () => setMenu(!nav.classList.contains('menu-open')));
+  navMenu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', e => {
+    if (!nav.classList.contains('menu-open')) return;
+    if (e.key === 'Escape') { setMenu(false); navToggle.focus(); return; }
+    if (e.key !== 'Tab') return;
+    // keep keyboard focus inside the open menu
+    const f = [...nav.querySelectorAll('a, button')];
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+    else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+  });
+  desktop.addEventListener('change', e => { if (e.matches) setMenu(false); });
+}
+
 // FAQ accordion (one open at a time, state exposed to assistive tech)
 const faqItems = [...document.querySelectorAll('.faq-item')];
 const setFaq = (item, open) => {
