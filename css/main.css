@@ -261,9 +261,11 @@ nav.solid .logo-img { height: 2.8125rem; }
 .hero-bg {
   position: absolute; inset: -22% 0; z-index: 0; will-change: transform;
   transform: translate3d(0, var(--parallax-y, 0px), 0);
-  background-image: url('../assets/images/hero-stone-house.jpg');
   background-size: cover; background-position: center;
 }
+.hero-bg--stone { background-image: url('../assets/images/hero-stone-house.jpg'); }
+.hero-bg--dusk { background-image: url('../assets/images/hero-dusk-farmhouse.jpg'); }
+.hero-bg--stock { background-image: url('../assets/images/hero-stock.jpg'); }
 /* navy tint over the photo */
 .hero-bg::before {
   content: ''; position: absolute; inset: 0;
