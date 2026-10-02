@@ -278,8 +278,6 @@ nav.solid .logo-img { height: 2.8125rem; }
   background-size: cover; background-position: center;
 }
 .hero-bg--stone { background-image: url('../assets/images/hero-stone-house.jpg'); }
-.hero-bg--dusk { background-image: url('../assets/images/hero-dusk-farmhouse.jpg'); }
-.hero-bg--stock { background-image: url('../assets/images/hero-stock.jpg'); }
 /* navy tint over the photo */
 .hero-bg::before {
   content: ''; position: absolute; inset: 0;
