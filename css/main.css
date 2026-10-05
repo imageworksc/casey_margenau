@@ -757,3 +757,13 @@ main { overflow-x: clip; }
 @media (min-width: 2200px) and (max-aspect-ratio: 2/1) {
   .hero-l-in { zoom: 1.18; }
 }
+
+/* ══════════ TESTIMONIALS — long quotes & adaptive height ══════════ */
+.testi-q--long { font-size: clamp(1.125rem, 1.7vw, 1.5rem); line-height: 1.6; letter-spacing: 0; }
+.testi-viewport { height: var(--testi-h, auto); transition: height .5s var(--ease-out); }
+.testi-track { align-items: flex-start; }
+@media (max-width: 560px) {
+  .testi-q--long { font-size: 1.0625rem; }
+  .testi-dots { flex-wrap: wrap; gap: 0.875rem; }
+}
+@media (prefers-reduced-motion: reduce) { .testi-viewport { transition: none; } }
