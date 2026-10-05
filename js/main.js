@@ -121,9 +121,12 @@ if (pxEls.length && !reduce) {
   const dots = [...c.querySelectorAll('.testi-dot')];
   if (slides.length < 2) return;
   let i = 0, timer = null;
+  const viewport = c.querySelector('.testi-viewport');
+  const fit = () => viewport.style.setProperty('--testi-h', slides[i].offsetHeight + 'px');
   const go = n => {
     i = (n + slides.length) % slides.length;
     track.style.setProperty('--slide', i);
+    fit();
     slides.forEach((s, k) => s.setAttribute('aria-hidden', String(k !== i)));
     dots.forEach((d, k) => {
       d.classList.toggle('is-active', k === i);
@@ -151,6 +154,8 @@ if (pxEls.length && !reduce) {
     const dx = e.clientX - x0; x0 = null;
     if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); start(); }
   });
+  window.addEventListener('resize', fit, { passive: true });
+  if (document.fonts) document.fonts.ready.then(fit);
   go(0);
   start();
 })();
