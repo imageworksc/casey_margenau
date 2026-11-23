@@ -408,7 +408,9 @@ body { margin: 0; }
 .cm-section.dark .col p { font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.65); }
 /* major columns: no top rules; one hairline runs between the two columns */
 .cols--major { gap: 0; }
-.cols--major .col { padding: 0; border-top: 0; }
+/* the columns share one row grid (icon, label, title, copy, link), so both links start on the same line */
+.cols--major { grid-template-rows: repeat(5, auto); }
+.cols--major .col { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; justify-items: start; padding: 0; border-top: 0; }
 .cols--major .col:first-child { padding-right: clamp(3.2rem, 5vw, 6.4rem); }
 .cols--major .col + .col { padding-left: clamp(3.2rem, 5vw, 6.4rem); border-left: 0.1rem solid var(--line-2); }
 .col-ico { display: block; margin-bottom: 2rem; font-size: 3.6rem; line-height: 1; color: var(--cr); }
