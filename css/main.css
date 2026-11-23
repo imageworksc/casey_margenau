@@ -389,16 +389,22 @@ body { margin: 0; }
 .cols { display: grid; gap: clamp(3.2rem, 5vw, 6.4rem); }
 .cols--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cols--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* stacked: one item per row, divided by hairlines */
+.cols--stack { grid-template-columns: minmax(0, 1fr); gap: 0; max-width: 80rem; }
+.cols--stack .col { padding: 2.4rem 0; }
+.cols--stack .col:last-child { border-bottom: 0.1rem solid var(--line-2); }
+.cols--stack .col-label { margin-bottom: 1rem; }
 .col { padding-top: 2.4rem; border-top: 0.1rem solid var(--line-2); }
 .col-label { margin-bottom: 1.6rem; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cr); }
 .col p { font-size: var(--text-lg); line-height: var(--lh-lg); color: var(--text2); }
 .col .tlink { margin-top: 3.2rem; }
 /* on navy: white rule and label, softer text */
-.cm-section.dark .col { border-top-color: rgba(255,255,255,0.22); }
+.cm-section.dark .col { border-color: rgba(255,255,255,0.22); }
 .cm-section.dark .col-label { color: #fff; }
 .cm-section.dark .col p { font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.65); }
 /* major columns: a heavier navy rule and a title under the label */
 .cols--major .col { padding-top: 3.2rem; border-top: 0.3rem solid var(--navy); }
+.col-ico { display: block; margin-bottom: 2rem; font-size: 3.6rem; line-height: 1; color: var(--cr); }
 .col-title { margin-bottom: 1.6rem; font-size: clamp(2.4rem, 2.4vw, var(--h-sm)); line-height: 1.27; font-weight: 300; color: var(--navy); }
 
 
@@ -449,7 +455,7 @@ body { margin: 0; }
 /* ══════════ 10. TEAM ══════════ */
 /* photograph behind the section under a navy veil */
 .cm-section.team { position: relative; isolation: isolate; background: var(--navy) url('../assets/images/blog-outdoor-staging.jpg') center / cover no-repeat; }
-.cm-section.team::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(9,23,52,0.92); }
+.cm-section.team::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(9,23,52,0.96); }
 .team-intro p + p { margin-top: 1.6rem; font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.6); }
 
 .team-foot {
