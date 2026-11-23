@@ -352,13 +352,11 @@ body { margin: 0; }
 .hero h1 strong { font-weight: 500; }
 .hero h1 em { font-style: italic; font-weight: 300; color: #aab4cc; }
 
-/* the three-part promise, one line each with a short red rule */
-.hero-promise { list-style: none; display: grid; gap: 1.2rem; margin-bottom: 4.4rem; }
-.hero-promise li {
-  display: flex; align-items: baseline; gap: 1.6rem;
-  font-size: var(--text-lg); line-height: var(--lh-lg); font-weight: 500; color: #fff;
+/* the three-part promise, one sentence under the headline */
+.hero-promise {
+  max-width: 56rem; margin-bottom: 4.4rem;
+  font-size: var(--text-xl); line-height: var(--lh-xl); font-weight: 500; color: #fff;
 }
-.hero-promise li::before { content: ''; flex: none; width: 2.4rem; height: 0.2rem; background: var(--cr); transform: translateY(-0.5rem); }
 .hero-ctas { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 
 /* load choreography: photo → headline → promise → CTAs → nav */
@@ -797,9 +795,7 @@ body { margin: 0; }
   /* hero: tighter so the CTAs reach the first screen */
   .hero { padding-top: 10.4rem; padding-bottom: 5.6rem; }
   .hero h1 { margin: 1.6rem 0 2.4rem; }
-  .hero-promise { gap: 0.8rem; margin-bottom: 3.2rem; }
-  .hero-promise li { font-size: var(--text-md); line-height: var(--lh-md); gap: 1.2rem; }
-  .hero-promise li::before { width: 1.6rem; transform: translateY(-0.4rem); }
+  .hero-promise { margin-bottom: 3.2rem; font-size: var(--text-lg); line-height: var(--lh-lg); }
 
   .lead-p { font-size: var(--text-lg); line-height: var(--lh-lg); }
   .statement { padding-left: 1.8rem; }
