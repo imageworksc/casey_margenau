@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.48.0/dist/tabler-icons.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=20261123m">
+<link rel="stylesheet" href="css/main.css?v=20261123n">
 </head>
 <body>
 <!-- Stands in for the Drupal field the page is rendered in. See README. -->
@@ -79,7 +79,7 @@
   </div>
 </section>
 
-<!-- EXPERTISE — intro + statement, buyer / seller cards, closing band -->
+<!-- EXPERTISE — intro + statement, buyers / sellers columns, closing line -->
 <section class="cm-section cream expertise">
   <div class="w">
     <div class="split-head">
@@ -92,24 +92,20 @@
         <p class="statement">Presentation, specialized marketing, property knowledge, and skilled negotiations become increasingly important at the luxury level.</p>
       </div>
     </div>
-    <div class="duo">
-      <article class="duo-card reveal">
-        <i class="ti ti-search duo-ico" aria-hidden="true"></i>
-        <h3 class="duo-k">Luxury Buyers</h3>
+    <div class="cols cols--2">
+      <div class="col reveal">
+        <h3 class="col-label">Luxury Buyers</h3>
         <p>Experienced luxury buyers often know exactly what they're looking for. They expect knowledgeable answers about a property's features, quality, value, and potential.</p>
-      </article>
-      <article class="duo-card reveal d1">
-        <i class="ti ti-home-star duo-ico" aria-hidden="true"></i>
-        <h3 class="duo-k">Sellers</h3>
-        <p>Sellers need a team that understands how to position a distinctive property, reach qualified buyers, and communicate what makes their home worth considering.</p>
-      </article>
-    </div>
-    <div class="band reveal">
-      <p class="band-em">At this level, the right marketing, the right people, and genuine market knowledge aren't extras. <strong>They're essential.</strong></p>
-      <div class="band-side">
-        <p>That's the expertise Casey Margenau Fine Homes brings to every transaction.</p>
-        <a href="#" class="tlink light">Explore Our Proven Sales Process <span class="arr">→</span></a>
       </div>
+      <div class="col reveal d1">
+        <h3 class="col-label">Sellers</h3>
+        <p>Sellers need a team that understands how to position a distinctive property, reach qualified buyers, and communicate what makes their home worth considering.</p>
+      </div>
+    </div>
+    <div class="closing reveal">
+      <p class="closing-claim">At this level, the right marketing, the right people, and genuine market knowledge aren't extras. <strong>They're essential.</strong></p>
+      <p class="closing-note">That's the expertise Casey Margenau Fine Homes brings to every transaction.</p>
+      <a href="#" class="tlink">Explore Our Proven Sales Process <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -163,21 +159,18 @@
         <p>Our team brings together experienced agents, marketing specialists, staging professionals, and transaction coordinators who work together from start to finish.</p>
       </div>
     </div>
-    <div class="proc-steps">
-      <div class="pstep reveal">
-        <i class="ti ti-user-check pstep-ico" aria-hidden="true"></i>
-        <h3 class="pstep-title">Casey's Personal Involvement</h3>
-        <p class="pstep-body">Experienced oversight of pricing, strategy, important decisions, and negotiations.</p>
+    <div class="cols cols--3">
+      <div class="col reveal">
+        <h3 class="col-label">Casey's Personal Involvement</h3>
+        <p>Experienced oversight of pricing, strategy, important decisions, and negotiations.</p>
       </div>
-      <div class="pstep reveal d1">
-        <i class="ti ti-camera pstep-ico" aria-hidden="true"></i>
-        <h3 class="pstep-title">Specialized Luxury Marketing</h3>
-        <p class="pstep-body">Property preparation, staging guidance, professional photography, video, and targeted exposure to qualified buyers.</p>
+      <div class="col reveal d1">
+        <h3 class="col-label">Specialized Luxury Marketing</h3>
+        <p>Property preparation, staging guidance, professional photography, video, and targeted exposure to qualified buyers.</p>
       </div>
-      <div class="pstep reveal d2">
-        <i class="ti ti-checklist pstep-ico" aria-hidden="true"></i>
-        <h3 class="pstep-title">Attention to Every Detail</h3>
-        <p class="pstep-body">Showing coordination, buyer feedback, communication, contract management, and settlement oversight.</p>
+      <div class="col reveal d2">
+        <h3 class="col-label">Attention to Every Detail</h3>
+        <p>Showing coordination, buyer feedback, communication, contract management, and settlement oversight.</p>
       </div>
     </div>
     <div class="team-foot reveal">
@@ -187,30 +180,32 @@
   </div>
 </section>
 
-<!-- APPROACH (SELL / BUY) -->
-<div class="intent">
-  <div class="intent-head">
-    <div class="kicker reveal">Our Approach</div>
-    <h2 class="reveal d1">Your Home Is Personal. <strong>So Is Our Approach.</strong></h2>
-    <p class="intent-sub reveal d1">No two properties or clients are exactly alike. We develop our strategy around your property, priorities, and goals.</p>
-  </div>
-  <div class="intent-in">
-    <div class="icol icol-sell reveal">
-      <span class="icol-ghost">SELL</span>
-      <div class="col-tag"><i class="ti ti-home-dollar col-ico" aria-hidden="true"></i>For Sellers</div>
-      <div class="col-head">Selling Your Luxury Home</div>
-      <p class="col-body">We identify what makes your property distinctive, determine how to position it competitively, and develop a tailored marketing and negotiation strategy designed to attract qualified buyers.</p>
-      <a href="#" class="tlink light" data-cta="seller-consult">Discuss Your Home's Value &amp; Selling Strategy <span class="arr">→</span></a>
+<!-- APPROACH — sell / buy as two ruled columns -->
+<section class="cm-section cream">
+  <div class="w">
+    <div class="split-head">
+      <div class="reveal">
+        <div class="kicker">Our Approach</div>
+        <h2>Your Home Is Personal. <strong>So Is Our Approach.</strong></h2>
+      </div>
+      <p class="lead-p reveal d1">No two properties or clients are exactly alike. We develop our strategy around your property, priorities, and goals.</p>
     </div>
-    <div class="icol icol-buy reveal d1">
-      <span class="icol-ghost">BUY</span>
-      <div class="col-tag"><i class="ti ti-building-estate col-ico" aria-hidden="true"></i>For Buyers</div>
-      <div class="col-head">Buying Your Next Home</div>
-      <p class="col-body">We help you evaluate properties beyond the asking price, understand local values, recognize opportunities, and negotiate with confidence.</p>
-      <a href="#" class="tlink" data-cta="buyer-consult">Discuss Your Home Search <span class="arr">→</span></a>
+    <div class="cols cols--2 cols--major">
+      <div class="col reveal">
+        <div class="col-label">For Sellers</div>
+        <h3 class="col-title">Selling Your Luxury Home</h3>
+        <p>We identify what makes your property distinctive, determine how to position it competitively, and develop a tailored marketing and negotiation strategy designed to attract qualified buyers.</p>
+        <a href="#" class="tlink" data-cta="seller-consult">Discuss Your Home's Value &amp; Selling Strategy <span class="arr">→</span></a>
+      </div>
+      <div class="col reveal d1">
+        <div class="col-label">For Buyers</div>
+        <h3 class="col-title">Buying Your Next Home</h3>
+        <p>We help you evaluate properties beyond the asking price, understand local values, recognize opportunities, and negotiate with confidence.</p>
+        <a href="#" class="tlink" data-cta="buyer-consult">Discuss Your Home Search <span class="arr">→</span></a>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- NORTHERN VIRGINIA — head, community index, what sets value -->
 <section class="cm-section">
@@ -231,16 +226,10 @@
     <div class="value reveal">
       <h3 class="value-q">Two homes with similar features can have very <strong>different values.</strong></h3>
       <ul class="factors" aria-label="Location, architecture, land, condition, and buyer expectations all matter.">
-        <li><i class="ti ti-map-pin" aria-hidden="true"></i><span>Location</span></li>
-        <li><i class="ti ti-building-arch" aria-hidden="true"></i><span>Architecture</span></li>
-        <li><i class="ti ti-plant-2" aria-hidden="true"></i><span>Land</span></li>
-        <li><i class="ti ti-tool" aria-hidden="true"></i><span>Condition</span></li>
-        <li><i class="ti ti-users" aria-hidden="true"></i><span>Buyer expectations</span></li>
+        <li>Location</li><li>Architecture</li><li>Land</li><li>Condition</li><li>Buyer expectations</li>
       </ul>
-      <div class="value-foot">
-        <p class="statement">Understanding those differences comes from decades of experience, not just market reports.</p>
-        <p class="value-note">It's knowledge that helps sellers position their properties intelligently and buyers recognize the right opportunities.</p>
-      </div>
+      <p class="statement">Understanding those differences comes from decades of experience, not just market reports.</p>
+      <p class="value-note">It's knowledge that helps sellers position their properties intelligently and buyers recognize the right opportunities.</p>
     </div>
   </div>
 </section>
