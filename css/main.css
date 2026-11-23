@@ -6,7 +6,7 @@
     3. Atoms (layout shell, kicker, buttons, text link)
     4. Motion (reveals, image wipe, keyframes)
     5. Nav
-    6. Hero (headline + promise + CTAs, the firm in a card)
+    6. Hero (headline, promise, CTAs, the firm in a card below)
     7. Shared section patterns (split head, lead, statement)
     8. Expertise (buyer / seller cards, closing band)
     9. Our Story (timeline)
@@ -342,11 +342,8 @@ body { margin: 0; }
 }
 
 .hero-inner { position: relative; z-index: 3; max-width: var(--maxw); margin: 0 auto; width: 100%; }
-/* two columns: headline, promise and CTAs left; the firm in a card right */
-.hero-grid {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 40rem);
-  gap: clamp(4rem, 6vw, 8rem); align-items: end;
-}
+/* one column: headline → promise → CTAs, the firm in a card underneath */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(4rem, 5vw, 5.6rem); justify-items: start; }
 .hero-l-in { max-width: 72rem; }
 
 .hero h1 {
@@ -368,7 +365,7 @@ body { margin: 0; }
 
 /* the firm, in a frosted card over the photo */
 .hero-card {
-  padding: clamp(2.8rem, 3vw, 3.6rem);
+  max-width: 72rem; padding: clamp(2.8rem, 3vw, 3.6rem);
   background: rgba(9,23,52,0.55); backdrop-filter: blur(1.2rem);
   border: 0.1rem solid rgba(255,255,255,0.12); border-top: 0.2rem solid var(--cr);
   font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.7);
@@ -376,7 +373,7 @@ body { margin: 0; }
 .hero-card p + p { margin-top: 1.6rem; }
 .hero-card .hero-card-lead { font-size: var(--text-lg); line-height: var(--lh-lg); font-weight: 500; color: #fff; }
 
-/* load choreography: photo → headline → promise → CTAs + card → nav */
+/* load choreography: photo → headline → promise → CTAs → card → nav */
 .hero .reveal.in { animation: riseIn 1.1s var(--ease-out) both; }
 .hero h1.reveal.in { animation-delay: .2s; }
 .hero .hero-promise.reveal.in { animation-delay: .35s; }
@@ -386,12 +383,10 @@ body { margin: 0; }
 
 /* ══════════ 7. SHARED SECTION PATTERNS ══════════ */
 
-/* section head: kicker + title left, lead copy right */
-.split-head {
-  display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(4rem, 7vw, 9.6rem); align-items: end;
-  margin-bottom: clamp(4.8rem, 6vw, 7.2rem);
-}
+/* section head: kicker, title, and the lead copy underneath — never beside it */
+.split-head { max-width: 80rem; margin-bottom: clamp(4.8rem, 6vw, 7.2rem); }
 .split-head h2 { margin-top: 2rem; }
+.split-head > * + * { margin-top: 2.4rem; }
 .lead-p { font-size: var(--text-xl); line-height: var(--lh-xl); color: var(--text2); }
 .cm-section.dark .lead-p { color: #fff; }
 
@@ -419,20 +414,20 @@ body { margin: 0; }
 
 /* closing band: the claim large, the sign-off and link beside it */
 .band {
-  display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(3.2rem, 5vw, 6.4rem); align-items: end;
   margin-top: 2.4rem; padding: clamp(4rem, 5vw, 6.4rem);
   background: var(--navy);
 }
-.band-em { font-size: clamp(2.4rem, 2.4vw, 3.2rem); line-height: 1.35; font-weight: 300; letter-spacing: var(--h-track); color: #fff; }
+.band-em { max-width: 80rem; font-size: clamp(2.4rem, 2.4vw, 3.2rem); line-height: 1.35; font-weight: 300; letter-spacing: var(--h-track); color: #fff; }
 .band-em strong { font-weight: 500; }
+.band-side { margin-top: 2.4rem; }
 .band-side p { margin-bottom: 2.4rem; font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.65); }
 .band a:focus-visible { outline-color: #fff; }
 
 
 /* ══════════ 9. OUR STORY — timeline ══════════ */
-.story { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(4rem, 7vw, 9.6rem); align-items: start; }
-.story-head { position: sticky; top: 12rem; }
+.story-head { margin-bottom: clamp(4.8rem, 6vw, 7.2rem); }
 .story-head h2 { margin-top: 2rem; }
+.timeline { max-width: 80rem; }
 
 .timeline { position: relative; list-style: none; padding-left: 4.4rem; }
 .timeline::before { content: ''; position: absolute; left: 0.6rem; top: 0.8rem; bottom: 0.8rem; width: 0.1rem; background: var(--line-2); }
@@ -473,7 +468,7 @@ body { margin: 0; }
 .pstep-body { font-size: var(--text-md); line-height: var(--lh-md); font-weight: 300; color: rgba(255,255,255,0.6); }
 
 .team-foot {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2.4rem 4.8rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2.4rem;
   margin-top: clamp(4rem, 5vw, 5.6rem);
 }
 .team-foot p { max-width: 64rem; font-size: var(--text-lg); line-height: var(--lh-lg); font-weight: 400; color: #fff; }
@@ -534,10 +529,8 @@ body { margin: 0; }
 .area:hover .arr { transform: translateX(0.6rem); }
 
 /* what sets value: the claim, the factors as chips, the experience line */
-.value {
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(4rem, 7vw, 9.6rem); align-items: start;
-  margin-top: clamp(4.8rem, 6vw, 7.2rem);
-}
+.value { max-width: 80rem; margin-top: clamp(4.8rem, 6vw, 7.2rem); }
+.value-side { margin-top: 4rem; }
 .value-q { margin-bottom: 2.8rem; font-size: clamp(2.4rem, 2.4vw, 3.2rem); line-height: 1.3; font-weight: 300; letter-spacing: var(--h-track); color: var(--navy); }
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; }
 .chips li {
@@ -772,17 +765,9 @@ body { margin: 0; }
   #nav.menu-open .nav-btn { transition-delay: .38s; }
   body.menu-open { overflow: hidden; }
 
-  /* hero: the card drops under the CTAs */
   .hero { min-height: auto; padding-top: 14rem; }
-  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 4.8rem; }
-  .hero-card { max-width: 64rem; }
 
   /* single-column splits */
-  .split-head, .band, .story, .value { grid-template-columns: minmax(0, 1fr); }
-  .split-head { gap: 2.4rem; align-items: start; }
-  .band { gap: 2.4rem; }
-  .story { gap: 4rem; }
-  .story-head { position: static; }
   .areas { grid-template-columns: 1fr 1fr; }
   .prop-split, .blog-single { grid-template-columns: minmax(0, 1fr); }
   .prop-frame { max-width: 46rem; }
