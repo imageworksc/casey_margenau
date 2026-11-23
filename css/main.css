@@ -436,14 +436,18 @@ body { margin: 0; }
 .ex-copy h2 { margin-top: 2rem; }
 .ex-lead { margin-top: 2rem; font-size: var(--text-lg); line-height: var(--lh-lg); color: var(--text2); }
 
-/* the four disciplines as a ruled list, the rest of the sentence under it */
+/* the four disciplines as a numbered, ruled list; the rest of the sentence under it */
 .pillars { margin-top: clamp(3.2rem, 4vw, 4.8rem); }
-.pillars-list { list-style: none; border-top: 0.1rem solid var(--line-2); }
+.pillars-list { list-style: none; counter-reset: pillar; border-top: 0.1rem solid var(--line-2); }
 .pillars-list li {
   display: flex; align-items: center; gap: 1.6rem; padding: 1.4rem 0; border-bottom: 0.1rem solid var(--line-2);
   font-size: clamp(2rem, 1.8vw, 2.6rem); line-height: 1.2; font-weight: 300; letter-spacing: var(--h-track); color: var(--navy);
 }
-.pillars-list li::before { content: ''; flex: none; width: 2rem; height: 0.2rem; background: var(--cr); }
+.pillars-list li { counter-increment: pillar; }
+.pillars-list li::before {
+  content: counter(pillar); flex: none; width: 2.4rem;
+  font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--cr);
+}
 .pillars-tail { margin-top: 1.6rem; font-size: var(--text-md); line-height: var(--lh-md); color: var(--text2); }
 
 .ex-views { margin-top: clamp(3.2rem, 4vw, 4.8rem); }
