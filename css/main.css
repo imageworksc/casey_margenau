@@ -406,8 +406,11 @@ body { margin: 0; }
 .cm-section.dark .col { border-color: rgba(255,255,255,0.22); }
 .cm-section.dark .col-label { color: #fff; }
 .cm-section.dark .col p { font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.65); }
-/* major columns: a heavier navy rule and a title under the label */
-.cols--major .col { padding-top: 3.2rem; border-top: 0.3rem solid var(--navy); }
+/* major columns: no top rules; one hairline runs between the two columns */
+.cols--major { gap: 0; }
+.cols--major .col { padding: 0; border-top: 0; }
+.cols--major .col:first-child { padding-right: clamp(3.2rem, 5vw, 6.4rem); }
+.cols--major .col + .col { padding-left: clamp(3.2rem, 5vw, 6.4rem); border-left: 0.1rem solid var(--line-2); }
 .col-ico { display: block; margin-bottom: 2rem; font-size: 3.6rem; line-height: 1; color: var(--cr); }
 .col-title { margin-bottom: 1.6rem; font-size: clamp(2.4rem, 2.4vw, var(--h-sm)); line-height: 1.27; font-weight: 300; color: var(--navy); }
 
@@ -502,7 +505,7 @@ body { margin: 0; }
 
 
 /* ══════════ 11. APPROACH — sell / buy ══════════
-   Two major ruled columns (see .cols--major in section 7). */
+   Two columns split by one hairline (see .cols--major in section 7). */
 
 
 /* ══════════ 12. NORTHERN VIRGINIA ══════════ */
@@ -813,6 +816,10 @@ body { margin: 0; }
 /* ── small tablet (≤820): sell/buy stack, hero sizes to its content ── */
 @media (max-width: 820px) {
   .cols--2, .cols--3 { grid-template-columns: minmax(0, 1fr); gap: 4rem; }
+  /* sell / buy stack: the divider turns horizontal */
+  .cols--major { gap: 0; }
+  .cols--major .col:first-child { padding: 0 0 4rem; }
+  .cols--major .col + .col { padding: 4rem 0 0; border-left: 0; border-top: 0.1rem solid var(--line-2); }
   /* the factor bar wraps into two rows */
   .factors li { flex: 1 1 33%; padding: 1.6rem; }
   .factors li:nth-child(n+4) { border-top: 0.1rem solid rgba(255,255,255,0.14); }
