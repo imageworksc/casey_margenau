@@ -310,8 +310,9 @@ body { margin: 0; }
 .hero {
   position: relative; overflow: hidden;
   min-height: 100vh; min-height: 100svh;
-  display: grid; grid-template-columns: minmax(0, 1fr); align-items: center;
-  padding: 13.2rem var(--pad) 8.8rem;
+  /* copy sits in the lower part of the screen so the house reads above it */
+  display: grid; grid-template-columns: minmax(0, 1fr); align-items: end;
+  padding: 13.2rem var(--pad) clamp(6.4rem, 11vh, 12rem);
 }
 .hero-bg {
   position: absolute; inset: -16% 0 0; z-index: 0; will-change: transform;
@@ -322,15 +323,17 @@ body { margin: 0; }
 .hero-bg--stone { background-image: url('../assets/images/hero-stone-house.jpg'); }
 .hero-bg--dusk  { background-image: url('../assets/images/hero-dusk-farmhouse.jpg'); }
 .hero-bg--stock { background-image: url('../assets/images/hero-stock.jpg'); }
-/* navy tint over the photo */
+/* navy tint over the photo, light enough for the house to show */
 .hero-bg::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(120% 90% at 78% 12%, rgba(27,51,88,0.30) 0%, rgba(9,23,52,0.74) 55%, rgba(6,17,32,0.92) 100%);
+  background: radial-gradient(120% 90% at 78% 12%, rgba(27,51,88,0.12) 0%, rgba(9,23,52,0.48) 55%, rgba(6,17,32,0.74) 100%);
 }
-/* left-side gradient for text legibility */
+/* legibility where the copy sits: bottom-left, fading out toward the house */
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(6,17,32,0.94) 0%, rgba(6,17,32,0.62) 46%, rgba(6,17,32,0.18) 100%);
+  background:
+    linear-gradient(0deg, rgba(6,17,32,0.78) 0%, rgba(6,17,32,0.35) 38%, rgba(6,17,32,0) 62%),
+    linear-gradient(90deg, rgba(6,17,32,0.72) 0%, rgba(6,17,32,0.32) 48%, rgba(6,17,32,0) 100%);
 }
 .hero-glow {
   position: absolute; z-index: 1; top: -10%; right: 4%;
@@ -442,6 +445,9 @@ body { margin: 0; }
 
 
 /* ══════════ 10. TEAM ══════════ */
+/* photograph behind the section under a navy veil */
+.cm-section.team { position: relative; isolation: isolate; background: var(--navy) url('../assets/images/blog-outdoor-staging.jpg') center / cover no-repeat; }
+.cm-section.team::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(9,23,52,0.86); }
 .team-intro p + p { margin-top: 1.6rem; font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.6); }
 
 .proc-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
