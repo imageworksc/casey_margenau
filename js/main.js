@@ -71,30 +71,6 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .img-reveal')
   .forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
 
-// Count-up numbers
-function runCount(el) {
-  if (el.dataset.done) return; el.dataset.done = '1';
-  const to = parseFloat(el.dataset.to) || 0;
-  const prefix = el.dataset.prefix || '';
-  const suffix = el.dataset.suffix || '';
-  const all = el.dataset.accent === 'all';
-  const fmt = n => Math.round(n).toLocaleString('en-US');
-  const render = v => el.innerHTML = all
-    ? '<span>' + prefix + fmt(v) + suffix + '</span>'
-    : prefix + fmt(v) + '<span>' + suffix + '</span>';
-  if (reduce) { render(to); return; }
-  const dur = 1700, t0 = performance.now();
-  (function frame(now) {
-    const p = Math.min(1, (now - t0) / dur);
-    render(to * (1 - Math.pow(1 - p, 3)));
-    if (p < 1) requestAnimationFrame(frame);
-  })(t0);
-}
-const countIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { runCount(e.target); countIO.unobserve(e.target); } });
-}, { threshold: 0.5 });
-document.querySelectorAll('.count').forEach(el => countIO.observe(el));
-
 // Subtle parallax
 const pxEls = document.querySelectorAll('[data-parallax]');
 if (pxEls.length && !reduce) {
