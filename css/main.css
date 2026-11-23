@@ -6,10 +6,10 @@
     3. Atoms (layout shell, kicker, buttons, text link)
     4. Motion (reveals, image wipe, keyframes)
     5. Nav
-    6. Hero (headline, promise, CTAs, the firm in a card below)
+    6. Hero (headline, promise, CTAs)
     7. Shared section patterns (split head, lead, statement)
-    8. Expertise (buyer / seller cards, closing band)
-    9. Our Story (timeline)
+    8. Who We Are + Expertise (buyer / seller cards, closing band)
+    9. Our Story (timeline + photograph)
    10. Team (icon cards)
    11. Approach (sell / buy)
    12. Northern Virginia (community tiles, value chips)
@@ -342,8 +342,6 @@ body { margin: 0; }
 }
 
 .hero-inner { position: relative; z-index: 3; max-width: var(--maxw); margin: 0 auto; width: 100%; }
-/* one column: headline → promise → CTAs, the firm in a card underneath */
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(4rem, 5vw, 5.6rem); justify-items: start; }
 .hero-l-in { max-width: 72rem; }
 
 .hero h1 {
@@ -363,22 +361,11 @@ body { margin: 0; }
 .hero-promise li::before { content: ''; flex: none; width: 2.4rem; height: 0.2rem; background: var(--cr); transform: translateY(-0.5rem); }
 .hero-ctas { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 
-/* the firm, in a frosted card over the photo */
-.hero-card {
-  max-width: 72rem; padding: clamp(2.8rem, 3vw, 3.6rem);
-  background: rgba(9,23,52,0.55); backdrop-filter: blur(1.2rem);
-  border: 0.1rem solid rgba(255,255,255,0.12); border-top: 0.2rem solid var(--cr);
-  font-size: var(--text-md); line-height: var(--lh-md); color: rgba(255,255,255,0.7);
-}
-.hero-card p + p { margin-top: 1.6rem; }
-.hero-card .hero-card-lead { font-size: var(--text-lg); line-height: var(--lh-lg); font-weight: 500; color: #fff; }
-
-/* load choreography: photo → headline → promise → CTAs → card → nav */
+/* load choreography: photo → headline → promise → CTAs → nav */
 .hero .reveal.in { animation: riseIn 1.1s var(--ease-out) both; }
 .hero h1.reveal.in { animation-delay: .2s; }
 .hero .hero-promise.reveal.in { animation-delay: .35s; }
 .hero .hero-ctas.reveal.in { animation-delay: .5s; }
-.hero .hero-card.reveal.in { animation-delay: .65s; }
 
 
 /* ══════════ 7. SHARED SECTION PATTERNS ══════════ */
@@ -398,7 +385,15 @@ body { margin: 0; }
 .lead-p + .statement { margin-top: 2.4rem; }
 
 
-/* ══════════ 8. EXPERTISE ══════════ */
+/* ══════════ 8. WHO WE ARE + EXPERTISE ══════════ */
+.cm-section.intro { padding-block: clamp(6.4rem, 8vw, 10.4rem); }
+.intro-in { max-width: 88rem; }
+.intro-lead {
+  margin-top: 2rem;
+  font-size: clamp(2.4rem, 2.6vw, 3.4rem); line-height: 1.35; font-weight: 300; letter-spacing: var(--h-track); color: var(--navy);
+}
+.intro-body { margin-top: 2.4rem; max-width: 76rem; font-size: var(--text-lg); line-height: var(--lh-lg); color: var(--text2); }
+
 .expertise { border-top: 0.3rem solid var(--cr); }
 
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; }
@@ -427,7 +422,10 @@ body { margin: 0; }
 /* ══════════ 9. OUR STORY — timeline ══════════ */
 .story-head { margin-bottom: clamp(4.8rem, 6vw, 7.2rem); }
 .story-head h2 { margin-top: 2rem; }
-.timeline { max-width: 80rem; }
+/* timeline left, photograph right */
+.story-body { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(4rem, 6vw, 8rem); align-items: start; }
+.story-photo { position: sticky; top: 12rem; margin: 0; overflow: hidden; aspect-ratio: 5 / 6; background: var(--sand); box-shadow: var(--shadow-lg); }
+.story-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .timeline { position: relative; list-style: none; padding-left: 4.4rem; }
 .timeline::before { content: ''; position: absolute; left: 0.6rem; top: 0.8rem; bottom: 0.8rem; width: 0.1rem; background: var(--line-2); }
@@ -691,7 +689,7 @@ body { margin: 0; }
    The theme's 1023px breakpoint forces img { height: auto !important },
    which undoes the cropped frames and blows the logos up to their natural
    size; its 767px one spaces every list item 20px apart. See README. */
-.field-html-code :is(.prop-img, .blog-img) img { height: 100% !important; }
+.field-html-code :is(.prop-img, .blog-img, .story-photo) img { height: 100% !important; }
 .field-html-code :is(.logo-img, .foot-logo-img) { height: var(--logo-h) !important; }
 :is(#cm-main, #nav, #cm-footer) :is(ul, ol) li { margin-bottom: 0; }
 
@@ -765,10 +763,12 @@ body { margin: 0; }
   #nav.menu-open .nav-btn { transition-delay: .38s; }
   body.menu-open { overflow: hidden; }
 
-  .hero { min-height: auto; padding-top: 14rem; }
+  .hero { padding-top: 14rem; }
 
   /* single-column splits */
   .areas { grid-template-columns: 1fr 1fr; }
+  .story-body { grid-template-columns: minmax(0, 1fr); }
+  .story-photo { position: static; max-width: 64rem; aspect-ratio: 4 / 3; }
   .prop-split, .blog-single { grid-template-columns: minmax(0, 1fr); }
   .prop-frame { max-width: 46rem; }
   .foot-g { grid-template-columns: 1fr 1fr; }
@@ -800,8 +800,6 @@ body { margin: 0; }
   .hero-promise { gap: 0.8rem; margin-bottom: 3.2rem; }
   .hero-promise li { font-size: var(--text-md); line-height: var(--lh-md); gap: 1.2rem; }
   .hero-promise li::before { width: 1.6rem; transform: translateY(-0.4rem); }
-  .hero-grid { gap: 4rem; }
-  .hero-card .hero-card-lead { font-size: var(--text-md); line-height: var(--lh-md); }
 
   .lead-p { font-size: var(--text-lg); line-height: var(--lh-lg); }
   .statement { padding-left: 1.8rem; }
