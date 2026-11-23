@@ -16,13 +16,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.48.0/dist/tabler-icons.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=20261123a">
+<link rel="stylesheet" href="css/main.css?v=20261123b">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<!-- Stands in for the Drupal field the page is rendered in. See README. -->
+<div class="field-html-code">
+
+<a class="skip-link" href="#cm-main">Skip to content</a>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" class="html-wrapper">
   <div class="nw">
     <a href="/" class="logo" aria-label="Casey Margenau Fine Homes & Estates">
       <img src="assets/images/logo.svg" alt="Casey Margenau — Fine Homes & Estates" class="logo-img" width="1529" height="348" data-fallback>
@@ -47,7 +50,7 @@
   </div>
 </nav>
 
-<main id="main">
+<main id="cm-main" class="html-wrapper">
 
 <!-- HERO -->
 <section class="hero">
@@ -71,7 +74,7 @@
 </section>
 
 <!-- EXPERTISE -->
-<section class="section cream expertise">
+<section class="cm-section cream expertise">
   <div class="w">
     <div class="exp-grid">
       <div class="exp-head reveal">
@@ -92,7 +95,7 @@
 </section>
 
 <!-- OUR STORY -->
-<section class="section">
+<section class="cm-section">
   <div class="w">
     <div class="auth-grid">
       <div class="auth-copy reveal">
@@ -124,7 +127,7 @@
 </section>
 
 <!-- TEAM -->
-<section class="section dark">
+<section class="cm-section dark">
   <div class="w">
     <div class="proc-head reveal">
       <div class="kicker dim">Our Team</div>
@@ -182,7 +185,7 @@
 </div>
 
 <!-- NORTHERN VIRGINIA -->
-<section class="section">
+<section class="cm-section">
   <div class="w">
     <div class="exp-grid">
       <div class="exp-head reveal">
@@ -200,7 +203,7 @@
 </section>
 
 <!-- FEATURED PROPERTY — hidden while the page uses the "Our Story" copy; content preserved -->
-<section class="section" hidden>
+<section class="cm-section" hidden>
   <div class="w">
     <div class="prop-split">
       <div class="prop-frame reveal-l">
@@ -227,7 +230,7 @@
 </section>
 
 <!-- TESTIMONIAL -->
-<section class="section cream testi">
+<section class="cm-section cream testi">
   <div class="w">
     <div class="kicker center reveal">What Our Clients Say</div>
     <div class="testi-carousel reveal d1" data-testi role="region" aria-roledescription="carousel" aria-label="Customer testimonials" tabindex="0">
@@ -284,7 +287,7 @@
 </section>
 
 <!-- AREAS SERVED — hidden per client preference, content preserved for SEO/future use -->
-<section class="section cream" hidden>
+<section class="cm-section cream" hidden>
   <div class="w">
     <div class="kicker">Where We Work</div>
     <h2>Explore Northern Virginia's <strong>Most Sought-After Communities</strong></h2>
@@ -294,7 +297,7 @@
 </section>
 
 <!-- FAQ — hidden while the page uses the "Our Story" copy; content preserved -->
-<section class="section cream" hidden>
+<section class="cm-section cream" hidden>
   <div class="w">
     <div class="faq-light">
       <div class="kicker reveal">Quick Answers</div>
@@ -319,7 +322,7 @@
 </section>
 
 <!-- BLOG — hidden while the page uses the "Our Story" copy; content preserved -->
-<section class="section" hidden>
+<section class="cm-section" hidden>
   <div class="w">
     <div class="kicker reveal">Latest Insight</div>
     <div class="blog-single">
@@ -335,7 +338,7 @@
 </section>
 
 <!-- CTA -->
-<section class="section dark">
+<section class="cm-section dark">
   <div class="w">
     <div class="cta-in reveal">
       <div class="kicker center dim">Let's Connect</div>
@@ -354,7 +357,7 @@
 </main>
 
 <!-- FOOTER -->
-<footer>
+<footer id="cm-footer" class="html-wrapper">
   <div class="foot-g">
     <div class="foot-logo">
       <img src="assets/images/logo.svg" alt="Casey Margenau — Fine Homes & Estates" class="foot-logo-img" width="1529" height="348" data-fallback>
@@ -397,6 +400,8 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261005a" defer></script>
+</div>
+
+<script src="js/main.js?v=20261123b" defer></script>
 </body>
 </html>

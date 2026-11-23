@@ -19,7 +19,7 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 if (navToggle && navMenu) {
   const desktop = window.matchMedia('(min-width: 1025px)');
-  const inertTargets = document.querySelectorAll('main, footer, .skip-link');
+  const inertTargets = document.querySelectorAll('#cm-main, #cm-footer, .skip-link');
   const setMenu = open => {
     nav.classList.toggle('menu-open', open);
     document.body.classList.toggle('menu-open', open);
