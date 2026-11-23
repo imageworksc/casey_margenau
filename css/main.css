@@ -389,10 +389,11 @@ body { margin: 0; }
 .cols { display: grid; gap: clamp(3.2rem, 5vw, 6.4rem); }
 .cols--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cols--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-/* stacked: one item per row, divided by hairlines */
+/* stacked: one item per row, hairlines only between items */
 .cols--stack { grid-template-columns: minmax(0, 1fr); gap: 0; max-width: 80rem; }
 .cols--stack .col { padding: 2.4rem 0; }
-.cols--stack .col:last-child { border-bottom: 0.1rem solid var(--line-2); }
+.cols--stack .col:first-child { padding-top: 0; border-top: 0; }
+.cols--stack .col:last-child { padding-bottom: 0; }
 .cols--stack .col-label { margin-bottom: 1rem; }
 .col { padding-top: 2.4rem; border-top: 0.1rem solid var(--line-2); }
 .col-label { margin-bottom: 1.6rem; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cr); }
